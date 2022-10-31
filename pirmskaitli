@@ -1,0 +1,66 @@
+/// LaboratorijasdarbsB21.cpp
+/*********************************************************
+Amanda Dana Stugle, as20256.
+B21:
+Doti divi naturāli skaitļi m un n.
+Izdrukāt visus pirmskaitļus, kas atrodas intervālā [m,n].
+Risinājumā izmantot funkciju, kas atpazīst pirmskaitli.
+Programma izveidota: 31.10.2022.
+*********************************************************/
+
+
+#include <iostream>
+using namespace std;
+
+bool ir_pirmskaitlis (int n) {
+bool ir_pirmskaitlis = true;
+if (n == 0 || n ==1) {
+    ir_pirmskaitlis = false;
+}
+else {
+    int i = 0;
+    for (i =2; i <= n / 2; ++i) {
+        if ( n % i == 0){
+            ir_pirmskaitlis = false;
+            break;
+        }
+    }
+}
+return ir_pirmskaitlis;
+}
+
+int main() {
+int ok;
+do {
+int n1, n2;
+cout << "Ievadiet pirmo naturālo skaitli : ";
+cin >> n1;
+cout << "Ievadiet otro naturālo skaitli : ";
+cin >> n2;
+
+while (n1<0 || n2<0)
+{
+    cout << "Nekorekta vērtība, mēģiniet vēlreiz!" << endl;
+    cout << "Ievadiet pirmo naturālo skaitli :" << endl;
+    cin >> n1;
+    cout << "Ievadiet otro naturālo skaitli :" << endl;
+    cin >> n2;
+}
+
+
+int mazakais = (n1 > n2)? n2: n1;
+int lielakais = (n1 > n2)? n1: n2;
+
+cout << "Pirmskaitļi :";
+while (mazakais < lielakais){
+    if (ir_pirmskaitlis(mazakais)){
+        cout << mazakais << " ";
+    }
+    mazakais++;
+}
+cout << endl;
+ cout << endl;
+   cout << "Vai turpināt (1) vai beigt (0) ?" << endl;
+   cin >> ok;
+} while (ok ==1);
+}
