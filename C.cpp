@@ -17,28 +17,28 @@ noskaidro, kurš no ievadītajiem veselajiem skaitļiem a, masīvā ar garumu n,
 ir trešais lielākais. Funkcija atgriež trešo lielāko skaitli kā rezultātu.
 *******************************************************************************/
 
-void tresaisLielakais(int arr[], int arr_size)
+int tresaisLielakais(int arr[], int arr_size)
 {
 
-    int pirmaisLielakais = arr[0];  /// Tiek atrasts pirmais lielākais skaitlis
-    for (int i=1; i < arr_size; i++)
+    int pirmaisLielakais = arr[0]; /// Tiek atrasts pirmais lielākais skaitlis
+    for (int i = 1; i < arr_size; i++)
         if (arr[i] > pirmaisLielakais)
-        pirmaisLielakais = arr[i];
+            pirmaisLielakais = arr[i];
 
-    int otraisLielakais = INT_MIN; /// Tiek atrasts otrs lielākais skaitlis
-    for (int i=0; i < arr_size; i++)
+    int otraisLielakais = arr[0]; /// Tiek atrasts otrs lielākais skaitlis
+    for (int i = 0; i < arr_size; i++)
         if (arr[i] > otraisLielakais && arr[i] < pirmaisLielakais)
-        otraisLielakais = arr[i];
+            otraisLielakais = arr[i];
 
-    int tresaisLielakais = INT_MIN; /// Tiek atrasts trešais lielākais skaitlis
-    for (int i=0; i< arr_size; i++)
-        if (arr[i] > tresaisLielakais && arr[i] < otraisLielakais)
-        tresaisLielakais = arr[i];
+    int rezultats = arr[0]; /// Tiek atrasts trešais lielākais skaitlis
+    for (int i = 0; i < arr_size; i++)
+        if (arr[i] > rezultats && arr[i] < otraisLielakais)
+            rezultats = arr[i];
 
-
+    return rezultats;
 }
 
-int main ()
+int main()
 {
     int ok;
     do
@@ -53,27 +53,24 @@ int main ()
             return 0;
         }
 
-
         int *arr;
-        arr = new int [arr_size];
+        arr = new int[arr_size];
 
-        for (int i=0; i<arr_size; i++)
+        for (int i = 0; i < arr_size; i++)
         {
-            cout << "Ievadiet " << i+1 << ". veselo skaitli:" << endl;
+            cout << "Ievadiet " << i + 1 << ". veselo skaitli:" << endl;
             cin >> arr[i];
         }
-        int n = sizeof(arr) / sizeof(arr[0]);
-        tresaisLielakais(arr,n);
-        cout << "Trešais lielākais skaitlis ir " << tresaisLielakais << endl;
+        int rezultats = tresaisLielakais(arr, arr_size);
+        cout << "Trešais lielākais skaitlis ir " << rezultats << endl;
         return 0;
 
-        delete [] arr;
-
+        delete[] arr;
 
         cout << endl;
         cout << "Vai turpināt (1), vai beigt (0)?" << endl;
         cin >> ok;
-    }while (ok == 1);
+    } while (ok == 1);
 
     return 0;
 }
